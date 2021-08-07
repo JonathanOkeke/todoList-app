@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const pool = require('../db');
+const pool = require('../db').default;
 const authorization = require('../middleware/authorization');
 
 // get all todos and username

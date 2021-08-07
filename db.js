@@ -1,4 +1,4 @@
-const Pool = require('pg').Pool;
+import { Pool, Client } from 'pg';
 require('dotenv').config();
 
 // Localhost pg dev config
@@ -18,4 +18,4 @@ const proConfig = {
 // Pg pool connection //
 const pool = new Pool(process.env.NODE_ENV === 'production' ? proConfig : devConfig);
 
-module.exports = pool;
+export default pool;
