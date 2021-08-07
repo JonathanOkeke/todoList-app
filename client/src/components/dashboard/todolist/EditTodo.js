@@ -12,7 +12,8 @@ export default function EditTodo({ todo, setTodosChange }) {
 			myHeaders.append('Content-Type', 'application/json');
 			myHeaders.append('token', localStorage.token);
 			const body = { description };
-			await fetch(`http://localhost:5000/dashboard/todos/${todo.todo_id}`, {
+			// Proxy
+			await fetch(`/dashboard/todos/${todo.todo_id}`, {
 				method: 'PUT',
 				headers: myHeaders,
 				body: JSON.stringify(body),

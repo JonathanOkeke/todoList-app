@@ -21,12 +21,12 @@ const Register = ({ setAuth }) => {
 		e.preventDefault();
 		try {
 			const body = { email, password, name };
-			const response = await fetch('http://localhost:5000/auth/register', {
+			const response = await fetch('/auth/register', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
 			});
-			// Retrieve jwt and store in the localstorage
+			// Retrieve jwt and store in local storage
 			const parseRes = await response.json();
 			if (parseRes.token) {
 				localStorage.setItem('token', parseRes.token);

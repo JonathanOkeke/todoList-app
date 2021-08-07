@@ -22,6 +22,11 @@ app.use('/auth', require('./routes/jwtAuth'));
 // Dashboard route
 app.use('/dashboard', require('./routes/dashboard'));
 
+// 404 page
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
+
 app.listen(port, () => {
 	console.log(`Server listening on http://localhost:${port}`);
 });
