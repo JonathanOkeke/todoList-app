@@ -1,4 +1,4 @@
-import { Pool, Client } from 'pg';
+const { Pool, Client } = require('pg');
 require('dotenv').config();
 
 // Localhost pg dev config
