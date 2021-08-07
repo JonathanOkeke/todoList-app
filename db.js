@@ -12,7 +12,8 @@ const devConfig = {
 
 // Heroku production pg config //
 const proConfig = {
-	connectionString: process.env.DATABASE_URL, //heroku pg addon
+	connectionString: process.env.DATABASE_URL,
+	ssl: { rejectUnauthorized: false },
 };
 
 // Pg pool connection //
