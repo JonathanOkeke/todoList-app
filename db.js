@@ -23,7 +23,8 @@ const pool = new Pool(process.env.NODE_ENV === 'production' ? proConfig : devCon
 const connectDB = async () => {
 	try {
 		// const client = await pool.connect();
-		await pool.connect();
+		const firstTouch = await pool.query('SELECT * from users');
+		console.log('users', firstTouch.rows);
 		console.log('PostgreSQL connected');
 		// client.release();
 	} catch (err) {
