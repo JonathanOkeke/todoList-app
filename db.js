@@ -21,7 +21,8 @@ const pool = new Pool(process.env.NODE_ENV === 'production' ? proConfig : devCon
 // Connect the db
 const connectDB = async () => {
 	try {
-		const client = await pool.connect();
+		// const client = await pool.connect();
+		await pool.connect();
 		console.log('PostgreSQL connected');
 		client.release();
 	} catch (err) {

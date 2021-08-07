@@ -26,17 +26,17 @@ router.post('/register', validInfo, async (req, res) => {
 		const hashedPsw = await bcrypt.hash(password, salt);
 
 		// 4. enter new user into the database
-		const client = await pool.connect();
+		// const client = await pool.connect();
 
-		const newUser = await client.query('INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *', [name, email, hashedPsw]);
+		const newUser = await pool.query('INSERT INTO users (user_name, user_email, user_password) VALUES ($1, $2, $3) RETURNING *', [name, email, hashedPsw]);
 
 		// 5. generating our jwt token
 
 		const token = jwtGenerator(newUser.rows[0].user_id);
 		res.json({ token });
-		client.release();
+		// client.release();
 	} catch (err) {
-		client.release();
+		// client.release();
 		console.error(err.message);
 		res.status(500).send('Server Error');
 	}
@@ -50,8 +50,8 @@ router.post('/login', validInfo, async (req, res) => {
 		const { email, password } = req.body;
 
 		// 2. check if the user exists ( if not then we throw the error)
-		const client = await pool.connect();
-		const user = await client.query('SELECT * FROM users WHERE user_email = $1', [email]);
+		// const client = await pool.connect();
+		const user = await pool.query('SELECT * FROM users WHERE user_email = $1', [email]);
 
 		if (user.rows.length === 0) {
 			return res.status(401).json('User with that email does NOT exist');
@@ -69,9 +69,9 @@ router.post('/login', validInfo, async (req, res) => {
 
 		const token = jwtGenerator(user.rows[0].user_id);
 		res.json({ token });
-		client.release();
+		// client.release();
 	} catch (err) {
-		client.release();
+		// client.release();
 		console.error(err.message);
 		res.status(500).send('Server Error');
 	}
