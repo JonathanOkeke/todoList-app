@@ -18,4 +18,4 @@ const proConfig = {
 // Pg pool connection //
 const pool = new Pool(process.env.NODE_ENV === 'production' ? proConfig : devConfig);
 
-export default pool;
+module.exports = pool;
