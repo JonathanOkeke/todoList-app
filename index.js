@@ -10,6 +10,20 @@ if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
+// Connect the db
+const connectDB = async () => {
+	try {
+		const client = await pool.connect();
+		console.log('PostgreSQL connected');
+		client.release();
+	} catch (err) {
+		client.release();
+		console.error('Failed to connect to PostgreSQL db', err);
+	}
+};
+
+connectDB();
+
 // Middleware //
 app.use(cors());
 app.use(express.json());
