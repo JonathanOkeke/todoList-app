@@ -3,7 +3,7 @@
 ## About
 A Heroku hosted todo-list application with:
 - A user registration and login system.
-- A server side JWT authentication and authorization system to protect specific client side endpoints and database access
+- A server side JWT authentication and authorization system to protect specific server side endpoints and database access
 - User state management with conditional rendering on the frontend.
 - Persisted user auth state on tab refresh.
 ### Frontend
