@@ -2,6 +2,8 @@ const router = require('express').Router();
 const pool = require('../db').default;
 const authorization = require('../middleware/authorization');
 
+pool.connect();
+
 // get all todos and username
 router.get('/', authorization, async (req, res) => {
 	try {
